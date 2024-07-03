@@ -1,0 +1,26 @@
+name: Branch Workflow Example
+
+on:
+  push:
+    branches:
+      - '*'
+
+jobs:
+  check-branch:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v2
+
+    - name: Check if branch contains 'feature'
+      if: contains(github.ref, 'feature')
+      run: echo "This branch contains 'feature'"
+
+    - name: Check if branch starts with 'hotfix'
+      if: startswith(github.ref, 'refs/heads/hotfix')
+      run: echo "This branch starts with 'hotfix'"
+
+    - name: Check if branch ends with 'release'
+      if: endswith(github.ref, 'release')
+      run: echo "This branch ends with 'release'"
