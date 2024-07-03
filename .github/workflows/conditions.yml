@@ -13,6 +13,10 @@ jobs:
     - name: Check out repository
       uses: actions/checkout@v2
 
+    - name: Check if branch contains 'main'
+      if: contains(github.ref, 'main')
+      run: echo "This is main branch"
+
     - name: Check if branch contains 'feature'
       if: contains(github.ref, 'feature')
       run: echo "This branch contains 'feature'"
